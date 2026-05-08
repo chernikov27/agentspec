@@ -1,0 +1,43 @@
+{
+  "name": "Repo Assistant MCP",
+  "tools": [
+    {
+      "name": "inspect_repository",
+      "description": "Analyze a public GitHub repository and return detected stack, install command, test command, and risk notes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "repoUrl": {
+            "type": "string",
+            "description": "Public GitHub repository URL."
+          }
+        },
+        "required": ["repoUrl"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "delete_branch",
+      "description": "Delete a branch from a connected repository after explicit user confirmation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "repoUrl": {
+            "type": "string",
+            "description": "Repository URL."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch name to delete."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Must be true only after explicit user confirmation."
+          }
+        },
+        "required": ["repoUrl", "branch", "confirmed"],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "spec": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Weather Utility API",
+      "version": "1.0.0",
+      "description": "Read-only weather lookup API for autonomous agents."
+    },
+    "servers": [
+      {
+        "url": "https://api.example.com"
+      }
+    ],
+    "paths": {
+      "/forecast": {
+        "get": {
+          "operationId": "getForecast",
+          "summary": "Get a weather forecast by city.",
+          "description": "Read-only endpoint that returns a concise weather forecast for a city and date range.",
+          "tags": ["weather", "lookup"],
+          "parameters": [
+            {
+              "name": "city",
+              "in": "query",
+              "required": true,
+              "description": "City name, for example Paris or San Francisco.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "days",
+              "in": "query",
+              "required": false,
+              "description": "Number of forecast days from 1 to 7.",
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 7
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Forecast result.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "city": {
+                        "type": "string"
+                      },
+                      "days": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "date": {
+                              "type": "string"
+                            },
+                            "summary": {
+                              "type": "string"
+                            },
+                            "temperatureC": {
+                              "type": "number"
+                            }
+                          },
+                          "required": ["date", "summary", "temperatureC"]
+                        }
+                      }
+                    },
+                    "required": ["city", "days"]
+                  },
+                  "example": {
+                    "city": "Paris",
+                    "days": [
+                      {
+                        "date": "2026-05-06",
+                        "summary": "Cloudy",
+                        "temperatureC": 17
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
