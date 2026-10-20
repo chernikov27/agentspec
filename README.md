@@ -24,16 +24,10 @@ Recommended workflow:
 2. Leave Terminal 1 open.
 3. Open Terminal 2 and run checks with `curl` or the smoke test.
 
-Using the portable Node runtime directly:
+In a second terminal, run the smoke test:
 
 ```bash
-"/Users/sergejcernikov/Desktop/тест клод/.codex-runtime/node-v24.15.0-darwin-arm64/bin/node" src/server.js
-```
-
-Then in a second terminal:
-
-```bash
-"/Users/sergejcernikov/Desktop/тест клод/.codex-runtime/node-v24.15.0-darwin-arm64/bin/node" scripts/smoke.js
+npm run smoke
 ```
 
 ## Test
@@ -101,13 +95,13 @@ address already in use 127.0.0.1:4020
 another AgentSpec server is already running. Use that server, stop the old server with `Ctrl+C`, or start a new one on another port:
 
 ```bash
-PORT=4021 "/Users/sergejcernikov/Desktop/тест клод/.codex-runtime/node-v24.15.0-darwin-arm64/bin/node" src/server.js
+PORT=4021 npm run dev
 ```
 
 Then test that port:
 
 ```bash
-AGENTSPEC_BASE_URL=http://127.0.0.1:4021 "/Users/sergejcernikov/Desktop/тест клод/.codex-runtime/node-v24.15.0-darwin-arm64/bin/node" scripts/smoke.js
+AGENTSPEC_BASE_URL=http://127.0.0.1:4021 npm run smoke
 ```
 
 ## Project Docs
